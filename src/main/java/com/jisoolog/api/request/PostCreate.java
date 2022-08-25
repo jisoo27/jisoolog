@@ -1,26 +1,20 @@
 package com.jisoolog.api.request;
 
-public class PostCreate { // 요청을 받아주는 그 클래스를 가지고 있는 request 페키지
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-    // 요청이 넘어왔을 때 이 클래스 변수에 할당해주어야 한다
-    // 그럴려면 setter 메서드 필요
+import javax.validation.constraints.NotBlank;
 
-    public String title;
-    public String content;
+@Getter
+@Setter
+@ToString
+public class PostCreate { // DTO
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @NotBlank(message = "타이틀을 입력해주세요.")
+    private String title;
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    @NotBlank(message = "컨텐츠를 입력해주세요.")
+    private String content;
 
-    @Override
-    public String toString() {
-        return "PostCreate{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 }
