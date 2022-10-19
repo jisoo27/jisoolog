@@ -1,6 +1,7 @@
 package com.jisoolog.api.controller;
 
 import com.jisoolog.api.repository.PostRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ class PostControllerTest {
 
     @Autowired
     private PostRepository postRepository;
+
+    @BeforeEach
+    void clean() {
+        postRepository.deleteAll();
+    }
 
     @Test
     @DisplayName("/posts 요청시 Hello World를 출력한다.")
@@ -74,6 +80,6 @@ class PostControllerTest {
 
         // db -> post 1개 등록
         // then
-        assertEquals(2L, postRepository.count()); // db -> post 2개 등록
+        assertEquals(1L, postRepository.count()); // db -> post 2개 등록
     }
 }
