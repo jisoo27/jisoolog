@@ -1,6 +1,8 @@
 package com.jisoolog.api.controller;
 
 import com.jisoolog.api.request.PostCreate;
+import com.jisoolog.api.service.PostService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +13,14 @@ import java.util.Map;
 
 @Slf4j // 로그를 사용할 수 있음
 @RestController
+@RequiredArgsConstructor
 public class PostController {
 
+    private final PostService postService;
+
     @PostMapping ("/posts")
-    public Map<String, String> post(@RequestBody @Valid PostCreate params) {
-         return Map.of(); // Map 생성 초기화해주는 of
+    public Map<String, String> post(@RequestBody @Valid PostCreate request) {
+        postService.write(request);
+        return Map.of(); // Map 생성 초기화해주는 of
     }
 }
