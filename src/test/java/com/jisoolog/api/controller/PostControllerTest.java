@@ -1,5 +1,6 @@
 package com.jisoolog.api.controller;
 
+import com.jisoolog.api.domain.Post;
 import com.jisoolog.api.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -81,5 +82,9 @@ class PostControllerTest {
         // db -> post 1개 등록
         // then
         assertEquals(1L, postRepository.count()); // db -> post 2개 등록
+
+        Post post = postRepository.findAll().get(0);
+        assertEquals("제목입니다.", post.getTitle());
+        assertEquals("내용입니다.", post.getContent());
     }
 }
