@@ -15,11 +15,11 @@ public class PostService { // service Layer
     private final PostRepository postRepository;
 
     public void write(PostCreate postCreate) {
-        // repository.save(postCreate) X 불가능
-        // PostCreate 는 RequestDto 형태라서 저 안에 save 메서드에 넣어줄수없다.
-        // RequestDto => entity 로 변환해주어야 함.
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
 
-        Post post = new Post(postCreate.getTitle(), postCreate.getContent());
         postRepository.save(post);
     }
 }
