@@ -22,4 +22,9 @@ public class PostService { // service Layer
 
         postRepository.save(post);
     }
+
+    public Post get(Long id) {
+        return postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 ID 입니다."));
+    }
 }
